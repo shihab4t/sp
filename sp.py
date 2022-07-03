@@ -13,11 +13,12 @@ Automation script for Sport Programmer aka. Competitive Programmer
 commands:
 -------------
 <file name>  ----------------------------------------  Create file with $HOME/.sp/template.cpp
+<file name>  ----------------------------------------  Create file with row customization
 update <template name>  -----------------------------  update template in $HOME/.sp/template.cpp
 run <file name>  ------------------------------------  Run C/C++ code with runtime info
 compile <file name>  --------------------------------  Compile C/C++ with log details
-cfst  <numeric series> <alphabetical series>  ------  Problem submission status
-cfre <file name> <problem numeric series>  ------  Rename with specific formatting
+cfst  <numeric series> <alphabetical series>  -------  Problem submission status
+cfre <file name> <problem numeric series>  ----------  Rename with specific formatting
 help, --help  ---------------------------------------  For help
     """
 
@@ -54,6 +55,19 @@ if __name__ == "__main__":
         file_name = str(numeric_series) + file_name
         print(old_file_name, file_name)
         rename(old_file_name, file_name)
+
+    elif argc >= 3 and argv[2] == "row":
+        file_name = argv[1]
+        print(f"Creating the {file_name} file...")
+        system(f"cp ~/.sp/template.cpp {file_name}")
+        system(f"date '+%A, %B %d, %Y | %r (%Z)' >> {file_name}")
+        print("Done! let's play")
+
+        open_flag = True
+        if open_flag:
+            open_flag = not(argc >= 4 and argv[3] == "no")
+        if open_flag:
+            system(f"code {file_name}")
 
     else:
         file_name = argv[1]
