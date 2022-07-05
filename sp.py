@@ -61,10 +61,10 @@ if __name__ == "__main__":
         old_file_name = argv[2]
         numeric_series = argv[3]
         file_name = old_file_name[4:]
-        print(old_file_name, file_name)
+        # print(old_file_name, file_name)
         file_name = str(numeric_series) + "." + file_name
         print(old_file_name, file_name)
-        # rename(old_file_name, file_name)
+        rename(old_file_name, file_name)
 
     elif argc >= 3 and argv[2] == "row":
         file_name = argv[1]
