@@ -18,7 +18,8 @@ update <template name>  -----------------------------  update template in $HOME/
 run <file name>  ------------------------------------  Run C/C++ code with runtime info
 compile <file name>  --------------------------------  Compile C/C++ with log details
 cfst  <numeric series> <alphabetical series>  -------  Problem submission status
-cfre <file name> <problem numeric series>  ----------  Rename with specific formatting
+cfre <file name> <problem numeric series>  ----------  Rename codeforces with specific formatting
+atre <file name> <problem series>  ------------------  Rename atcoder with specific formatting
 help, --help  ---------------------------------------  For help
     """
 
@@ -55,6 +56,15 @@ if __name__ == "__main__":
         file_name = str(numeric_series) + file_name
         print(old_file_name, file_name)
         rename(old_file_name, file_name)
+
+    elif argv[1] == 'atre':
+        old_file_name = argv[2]
+        numeric_series = argv[3]
+        file_name = old_file_name[4:]
+        print(old_file_name, file_name)
+        file_name = str(numeric_series) + "." + file_name
+        print(old_file_name, file_name)
+        # rename(old_file_name, file_name)
 
     elif argc >= 3 and argv[2] == "row":
         file_name = argv[1]
