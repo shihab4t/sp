@@ -13,7 +13,7 @@ Automation script for Sport Programmer aka. Competitive Programmer
 commands:
 -------------
 <file name>  ----------------------------------------  Create file with $HOME/.sp/template.cpp
-<file name>  ----------------------------------------  Create file with row customization
+<file name> with ------------------------------------  Create file with row customization
 update <template name>  -----------------------------  update template in $HOME/.sp/template.cpp
 run <file name>  ------------------------------------  Run C/C++ code with runtime info
 compile <file name>  --------------------------------  Compile C/C++ with log details
@@ -66,20 +66,7 @@ if __name__ == "__main__":
         print(old_file_name, file_name)
         rename(old_file_name, file_name)
 
-    elif argc >= 3 and argv[2] == "row":
-        file_name = argv[1]
-        print(f"Creating the {file_name} file...")
-        system(f"cp ~/.sp/template.cpp {file_name}")
-        system(f"date '+%A, %B %d, %Y | %r (%Z)' >> {file_name}")
-        print("Done! let's play")
-
-        open_flag = True
-        if open_flag:
-            open_flag = not(argc >= 4 and argv[3] == "no")
-        if open_flag:
-            system(f"code {file_name}")
-
-    else:
+    elif argc >= 3 and argv[2] == "with":
         file_name = argv[1]
         file_name = re.sub("\s", "_", file_name)
         file_name = re.sub("._", ".", file_name, 1)
@@ -99,5 +86,17 @@ if __name__ == "__main__":
         if open_flag:
             open_flag = not(argc >= 4 and argv[3] == "no")
 
+        if open_flag:
+            system(f"code {file_name}")
+    else:
+        file_name = argv[1]
+        print(f"Creating the {file_name} file...")
+        system(f"cp ~/.sp/template.cpp {file_name}")
+        system(f"date '+%A, %B %d, %Y | %r (%Z)' >> {file_name}")
+        print("Done! let's play")
+
+        open_flag = True
+        if open_flag:
+            open_flag = not(argc >= 4 and argv[3] == "no")
         if open_flag:
             system(f"code {file_name}")
